@@ -1,7 +1,6 @@
 import datetime #importación del modilo datime para la fecha en el formato pedido
 #No se evidencia uso de herencias ya que no hay clases hijas que heredan
 #Tampoco se evidencia uso de polimorfismos
-
 class Medicamento:
     def _init_(self):  #constructor
         self.__nombre = ""
@@ -19,7 +18,7 @@ class Medicamento:
 
     def asignarDosis(self, med):
         self.__dosis = med
-
+        
 class Mascota:
     def _init_(self):  #constructor
         self.__nombre = ""
@@ -242,3 +241,11 @@ def main():
 
 if _name_ == '_main_':
     main()
+
+
+
+
+            
+
+                
+

@@ -1,10 +1,11 @@
+#Clase tipo paciente con atributos como nombre,cedula,servicio,genero. Todos de manera privada
 class Paciente:
-    def __init__(self):
+    def _init_(self):  #constructor
       self.__nombre = ""
       self.__cedula = 0
       self.__genero = ""
       self.__servicio = ""
-      
+       # Métodos Getters
     def verNombre(self):
         return self.__nombre
     def verServicio(self):
@@ -13,7 +14,7 @@ class Paciente:
         return self.__genero
     def verCedula(self):
         return self.__cedula
-    
+     # Métodos Setters
     def asignarNombre(self,n):
         self.__nombre = n
     def asignarServicio(self,s):
@@ -25,40 +26,48 @@ class Paciente:
 
 class Sistema:
     def __init__(self):
+      # Atributos encapsulados
       self.__lista_pacientes = []
-    #   self.__lista_pacientes = {}
       self.__numero_pacientes = len(self.__lista_pacientes)
-      
+        # Método para ingresar un nuevo paciente al sistema
     def ingresarPaciente(self):
-        # 1- solicito los datos por teclado
+        
         nombre = input("Ingrese el nombre: ")
         cedula = int(input("Ingrese la cedula: "))    
         genero = input("Ingrese el genero: ")
         servicio = input("Ingrese el servicio: ")
-        # 2- creo el objeto Paciente y le asigno los datos
-        p = Paciente()
+        
+        p = Paciente() #polimorfismo
         p.asignarNombre(nombre)
         p.asignarCedula(cedula)
         p.asignarGenero(genero)
         p.asignarServicio(servicio)        
-        # 3- guardo el Paciente en  la lista        
+                
         self.__lista_pacientes.append(p)
-        # self.__lista_pacientes[p.verCedula()] = p
-        # 4- actualizo la cantidad de pacientes en el sistema
         self.__numero_pacientes = len(self.__lista_pacientes)
 
+    # Método para ver el número total de pacientes en el sistema
     def verNumeroPacientes(self):
         return self.__numero_pacientes
-    
+
+    # Método para ver los datos de un paciente por cédula o nombre
     def verDatosPaciente(self):
-        cedula = int(input("Ingrese la cedula a buscar: "))
-        
+        consulta = input("Ingrese la cedula o nombre a buscar: ")
+
         for paciente in self.__lista_pacientes:
-            if cedula == paciente.verCedula():
+            # Búsqueda por cédula o nombre parcial
+            if consulta == str(paciente.verCedula()) or consulta.lower() in paciente.verNombre().lower():
                 print("Nombre: " + paciente.verNombre())
                 print("Cedula: " + str(paciente.verCedula()))
                 print("Genero: " + paciente.verGenero())
                 print("Servicio: " + paciente.verServicio())
-                
 
 
+def main():
+    sistema = Sistema()
+    sistema.ingresarPaciente()
+    sistema.verDatosPaciente()
+
+
+if _name_ == "_main_":
+    main()
